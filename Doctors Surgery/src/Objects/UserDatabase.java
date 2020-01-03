@@ -8,6 +8,7 @@ package Objects;
 import doctors.surgery.users.SystemUser;
 import java.util.ArrayList;
 
+
 /**
  *
  * @author Josie
@@ -18,7 +19,22 @@ import java.util.ArrayList;
 public class UserDatabase 
 {
     //public SystemUser[] allUsers;
-    public ArrayList<SystemUser> allUsers = new ArrayList<SystemUser>();
+    public ArrayList<SystemUser> allUsers;
+    
+    // one instance of user databse, to folow the singleton pattern 
+    public static UserDatabase instance = null;
+    
+    private UserDatabase(){ allUsers = new ArrayList<>(0);}
+    
+    public static UserDatabase getInstanceOfDatabase()
+    {
+        if(instance == null)
+        {
+            instance = new UserDatabase();
+        }
+        return instance;
+    }
+    
     
     public void addUser(SystemUser newUser)
     {
@@ -29,38 +45,87 @@ public class UserDatabase
     public Boolean login(String ID, String password)
     {
         Boolean loggedIn = false;
-        for(Integer i=0; i<=allUsers.size(); )
+        for(Integer i=0; i < allUsers.size(); i++)
         {
             if(allUsers.get(i).getID().equals(ID) )
             {
                 loggedIn = allUsers.get(i).getPassword().equals(password);
             }
-            else
-            {
-                if(i < allUsers.size() )
-                {
-                    i++;
-                }
-                else
-                {
-                    loggedIn = false;
-                    // no user with that id found 
-                }
-                
-            }
+            
         }
         
         return loggedIn;
     }
-
-    public UserDatabase() {
-        SystemUser[] newAllUsers = new SystemUser[10];
-       
-    }
     
-    public SystemUser findUser(Integer arrayIndex)
+    public Integer getNumberOfRoles(String userType)
     {
-        return allUsers[arrayIndex];
+        Integer counter = 0;
+        
+        if(allUsers.isEmpty())
+        {
+            counter = 0;
+        }
+        //ADMIN
+        if("Administrator".equals(userType))
+        {
+            
+            for(Integer i = 0; i< allUsers.size(); i++)
+            {
+                
+                if(allUsers.get(i).getFirstLetterID().equals("A"))
+                {
+                    counter++;
+                } 
+            }
+        }
+        //DOC
+        if("Doctor".equals(userType))
+        {
+            
+            for(Integer i = 0; i< allUsers.size(); i++)
+            {
+                
+                if(allUsers.get(i).getFirstLetterID().equals("D"))
+                {
+                    counter++;
+                } 
+            }
+        }
+        //PAT
+        if("Patient".equals(userType))
+        {
+            
+            for(Integer i = 0; i< allUsers.size(); i++)
+            {
+                
+                if(allUsers.get(i).getFirstLetterID().equals("P"))
+                {
+                    counter++;
+                } 
+            }
+        }
+        //SEC
+        if("Secretary".equals(userType))
+        {
+            
+            for(Integer i = 0; i< allUsers.size(); i++)
+            {
+                
+                if(allUsers.get(i).getFirstLetterID().equals("S"))
+                {
+                    counter++;
+                } 
+            }
+        }
+        
+        return counter;
+    }
+
+
+    
+    public SystemUser findUser(Integer listIndex)
+    {
+        return allUsers.get(listIndex);
     }
     
     

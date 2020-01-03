@@ -7,6 +7,8 @@ package doctors.surgery.users;
 
 import Interfaces.AccountManagement;
 import Interfaces.AppointmentManagement;
+import Objects.Address;
+import Objects.UserDatabase;
 
 /**
  *
@@ -14,8 +16,17 @@ import Interfaces.AppointmentManagement;
  */
 
 // sec subclass
-public class Secretary implements AppointmentManagement, AccountManagement
+public class Secretary extends SystemUser  implements AppointmentManagement, AccountManagement
 {
+
+    public Secretary() {
+        super("Secretary", UserDatabase.getInstanceOfDatabase());
+    }
+
+    public Secretary(String userType, String forename, String surname, Address address) {
+        super("Secretary", forename, surname, address);
+    }
+    
     //vars
     
     //methods

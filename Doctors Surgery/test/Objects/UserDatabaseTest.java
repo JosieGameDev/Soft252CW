@@ -43,14 +43,43 @@ public class UserDatabaseTest {
         // create a user
         SystemUser tempUser = new SystemUser("Josie", "1234");
         //UserDatabase.addUser(tempUser);
-        UserDatabase tempUserDatabase = new UserDatabase();
+        UserDatabase tempUserDatabase = UserDatabase.getInstanceOfDatabase();
         tempUserDatabase.addUser(tempUser);
         assertEquals(tempUser, tempUserDatabase.allUsers.get(0));
     }
 
     @Test
     public void testLogin() {
-        fail("Test not complete");
+        //create user, add to database
+        UserDatabase tempUserDatabase = UserDatabase.getInstanceOfDatabase();
+        SystemUser testUser = new SystemUser("Administrator", tempUserDatabase);
+        tempUserDatabase.addUser(testUser);
+        
+        assertTrue(tempUserDatabase.login("A1", "tempPw"));
+    }
+
+    @Test
+    public void testGetNumberOfRoles() {
+        
+        UserDatabase tempUserDatabase = UserDatabase.getInstanceOfDatabase();
+        SystemUser tempUser = new SystemUser("Josie", "123");
+        tempUserDatabase.addUser(tempUser);
+ 
+        //should currently have no doctors
+        Integer num = 0;
+        assertEquals(tempUserDatabase.getNumberOfRoles("Doctor"), num);
+        
+        // add an admin
+        SystemUser testAdmin = new SystemUser("Doctor", tempUserDatabase);
+        tempUserDatabase.addUser(testAdmin);
+        tempUserDatabase.addUser(testAdmin);
+        tempUserDatabase.addUser(testAdmin);
+        assertTrue(tempUserDatabase.getNumberOfRoles("Doctor").equals(3));
+
+    }
+
+    @Test
+    public void testFindUser() {
     }
     
 }

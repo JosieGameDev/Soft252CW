@@ -6,6 +6,7 @@
 package Objects;
 
 import doctors.surgery.users.SystemUser;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,25 +17,27 @@ import doctors.surgery.users.SystemUser;
 // singleton - can only be one database 
 public class UserDatabase 
 {
-    public SystemUser[] allUsers;
+    //public SystemUser[] allUsers;
+    public ArrayList<SystemUser> allUsers = new ArrayList<SystemUser>();
     
     public void addUser(SystemUser newUser)
     {
-        allUsers[allUsers.length +1] = newUser; // add new user to end of array
+        //allUsers[allUsers.length +1] = newUser; // add new user to end of array
+        allUsers.add(newUser);
     }
     
     public Boolean login(String ID, String password)
     {
         Boolean loggedIn = false;
-        for(Integer i=0; i<=allUsers.length; )
+        for(Integer i=0; i<=allUsers.size(); )
         {
-            if(allUsers[i].getID().equals(ID))
+            if(allUsers.get(i).getID().equals(ID) )
             {
-                loggedIn = allUsers[i].getPassword().equals(password);
+                loggedIn = allUsers.get(i).getPassword().equals(password);
             }
             else
             {
-                if(i<allUsers.length)
+                if(i < allUsers.size() )
                 {
                     i++;
                 }
@@ -49,4 +52,16 @@ public class UserDatabase
         
         return loggedIn;
     }
+
+    public UserDatabase() {
+        SystemUser[] newAllUsers = new SystemUser[10];
+       
+    }
+    
+    public SystemUser findUser(Integer arrayIndex)
+    {
+        return allUsers[arrayIndex];
+    }
+    
+    
 }

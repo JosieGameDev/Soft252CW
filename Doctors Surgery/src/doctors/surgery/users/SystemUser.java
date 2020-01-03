@@ -35,6 +35,13 @@ public class SystemUser {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public SystemUser(String ID, String password) {
+        this.ID = ID;
+        this.password = password;
+    }
+    
+    
     
     
     

@@ -5,52 +5,52 @@
  */
 package Objects;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import doctors.surgery.users.SystemUser;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
- * @author Josie
+ * @author jwood20
  */
 public class UserDatabaseTest {
     
-    
     public UserDatabaseTest() {
-
     }
     
-    @BeforeAll
+    @BeforeClass
     public static void setUpClass() {
-       
     }
     
-    @AfterAll
+    @AfterClass
     public static void tearDownClass() {
-        
     }
     
-    @BeforeEach
+    @Before
     public void setUp() {
-        
     }
     
-    @AfterEach
+    @After
     public void tearDown() {
-        
     }
 
     @Test
     public void testAddUser() {
-        fail("Test not yet implemented");
+        // create a user
+        SystemUser tempUser = new SystemUser("Josie", "1234");
+        //UserDatabase.addUser(tempUser);
+        UserDatabase tempUserDatabase = new UserDatabase();
+        tempUserDatabase.addUser(tempUser);
+        assertEquals(tempUser, tempUserDatabase.allUsers.get(0));
     }
 
     @Test
     public void testLogin() {
-        fail("Test not yet implemented");
+        fail("Test not complete");
     }
     
 }

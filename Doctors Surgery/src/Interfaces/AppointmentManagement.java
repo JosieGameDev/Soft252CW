@@ -11,4 +11,6 @@ package Interfaces;
  */
 public interface AppointmentManagement {
     
+    public void makeAppointment();
+    
 }

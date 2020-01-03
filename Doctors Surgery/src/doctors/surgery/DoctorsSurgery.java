@@ -16,6 +16,11 @@ public class DoctorsSurgery {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        //TESTING LOGGING IN 
+        //TEST ADD USER TO DATABASE
+        
+        
     }
     
 }

@@ -19,12 +19,19 @@ public class Message {
     private SystemUser recipient;
     private String message;
     private Boolean read;
+    private String title;
 
-    public Message(SystemUser sender, SystemUser recipient, String message) {
+    public Message(SystemUser sender, SystemUser recipient, String message, String title) {
         this.sender = sender;
         this.recipient = recipient;
         this.message = message;
         this.read = false;
+        this.title = title;
+    }
+    
+    public String getTitle()
+    {
+        return title;
     }
 
     public SystemUser getSender() {

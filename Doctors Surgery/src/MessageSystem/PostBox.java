@@ -19,6 +19,11 @@ public class PostBox {
         postBox = new ArrayList<>(0);
     }
     
+    public void sendMessage(Message newMessage)
+    {
+        postBox.add(newMessage);
+    }
+    
     
     
 }

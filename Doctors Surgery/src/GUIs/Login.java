@@ -7,6 +7,7 @@ package GUIs;
 
 import Objects.Address;
 import Objects.UserDatabase;
+import doctors.surgery.users.Doctor;
 import doctors.surgery.users.Patient;
 import doctors.surgery.users.SystemUser;
 
@@ -32,6 +33,8 @@ public class Login extends javax.swing.JFrame {
         Patient testPatient = new Patient("Jane", "Doe", newAdd, 21, "Female");
         userDatabase.addUser(testUser1);
         userDatabase.addUser(testPatient);
+        Doctor testDoc = new Doctor();
+        userDatabase.addUser(testDoc);
         
     }
 
@@ -126,11 +129,10 @@ public class Login extends javax.swing.JFrame {
         if(userDatabase.login(ID, pw))
         {
             lbl_outputStatus.setText("LOGGED IN"); 
-            this.setVisible(false);
             SystemUser thePat = (userDatabase.findUserWithID(ID));
             userDatabase.logInAsUser(thePat);
             
-            new PatientPortal().setVisible(true);
+            openRelevantPortal();
             
             
         }
@@ -142,6 +144,33 @@ public class Login extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_loginActionPerformed
 
+    public void openRelevantPortal()
+    {
+        String ID_type = userDatabase.getLoggedInUser().getFirstLetterID();
+        
+        if(ID_type.equals("P"))
+        {
+            
+            this.setVisible(false);
+            new PatientPortal().setVisible(true);
+        }
+        else if(ID_type.equals("A"))
+        {
+            this.setVisible(false);
+            new AdminPortal().setVisible(true);
+        }
+        else if (ID_type.equals("D"))
+        {
+            this.setVisible(false);
+            new DoctorPortal().setVisible(true);
+        }
+        else
+        {
+            lbl_outputStatus.setText("Portal for this user type is currently unavailable");
+        }
+        
+    }
+    
     private void txt_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_IDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_IDActionPerformed

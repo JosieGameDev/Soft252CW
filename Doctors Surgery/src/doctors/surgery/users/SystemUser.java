@@ -5,6 +5,8 @@
  */
 package doctors.surgery.users;
 
+import MessageSystem.Message;
+import MessageSystem.PostBox;
 import Objects.Address;
 import Objects.UserDatabase;
 
@@ -27,7 +29,18 @@ public class SystemUser {
     private String forename;
     String surname;
     private Address address;
+    
+    private PostBox postBox = new PostBox();
 
+    public void sendMessage(Message newMessage)
+    {
+        postBox.sendMessage(newMessage);
+    }
+    public PostBox getPostbox()
+    {
+        return postBox;
+    }
+    
     public String getForename() {
         return forename;
     }

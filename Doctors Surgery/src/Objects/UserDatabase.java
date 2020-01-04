@@ -5,6 +5,8 @@
  */
 package Objects;
 
+import doctors.surgery.users.Doctor;
+import doctors.surgery.users.Patient;
 import doctors.surgery.users.SystemUser;
 import java.util.ArrayList;
 
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 // singleton - can only be one database 
 public class UserDatabase 
 {
+    public SystemUser loggedInUser;
     //public SystemUser[] allUsers;
     public ArrayList<SystemUser> allUsers;
     
@@ -35,7 +38,14 @@ public class UserDatabase
         return instance;
     }
     
-    
+    public void logInAsUser(SystemUser currentUser)
+    {
+        loggedInUser = currentUser;
+    }
+    public SystemUser getLoggedInUser()
+    {
+        return loggedInUser;
+    }
     public void addUser(SystemUser newUser)
     {
         //allUsers[allUsers.length +1] = newUser; // add new user to end of array
@@ -56,6 +66,8 @@ public class UserDatabase
         
         return loggedIn;
     }
+    
+    
     
     public ArrayList<SystemUser> getListOfRoles(String userType)
     {
@@ -191,6 +203,37 @@ public class UserDatabase
     {
         return allUsers.get(listIndex);
     }
+    
+    public SystemUser findUserWithID(String ID)
+    {
+        SystemUser tempUser = new SystemUser();
+        for(Integer i = 0; i<instance.allUsers.size(); i++)
+        {
+            if(instance.allUsers.get(i).getID().equals(ID))
+            {
+                tempUser = instance.allUsers.get(i);
+            }
+        }
+        
+        return tempUser;
+    }
+    
+    public SystemUser findDoctor(String doctorName)
+    {
+        ArrayList<SystemUser> allDocs = getListOfRoles("Doctor");
+        SystemUser foundDoc = new Doctor();
+        
+        for(Integer i = 0; i < allDocs.size(); i++)
+        {
+            if(allDocs.get(i).getSurname().equals(doctorName))
+            {
+                foundDoc = allDocs.get(i);
+            }
+            
+        }
+        return foundDoc;
+    }
+    
     
     
 }

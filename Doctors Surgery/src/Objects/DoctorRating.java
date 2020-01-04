@@ -36,6 +36,13 @@ public class DoctorRating {
         this.rateOutOfFive = 5;
         this.comments = "test rating";
     }
+    
+    public DoctorRating(String surname, Integer rateOutOfFive, String comments) {
+        Doctor testDoc = new Doctor(surname);
+        this.doctor = testDoc;
+        this.rateOutOfFive = rateOutOfFive;
+        this.comments = comments;
+    }
 
     public Doctor getDoctor() {
         return doctor;

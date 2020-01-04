@@ -32,7 +32,7 @@ public class Patient extends SystemUser implements AppointmentManagement, Patien
     
     //vars
 
-    public Patient(String userType, String forename, String surname, Address address) {
+    public Patient(String forename, String surname, Address address) {
         super("Patient", forename, surname, address);
     }
     

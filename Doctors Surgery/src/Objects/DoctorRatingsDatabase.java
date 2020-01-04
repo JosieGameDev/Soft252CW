@@ -55,4 +55,19 @@ public class DoctorRatingsDatabase {
         
         return subList;
     }
+    
+    public ArrayList<DoctorRating> getDocsRatingsSurname(String name)
+    {
+        ArrayList<DoctorRating> subList = new ArrayList<>(0);
+        for(Integer i = 0; i < allRatings.size(); i++ )
+        {
+            if(allRatings.get(i).getDoctor().getSurname().equals(name))
+            {
+                subList.add(allRatings.get(i));
+            }
+            
+        }
+        
+        return subList;
+    }
 }

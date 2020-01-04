@@ -104,5 +104,33 @@ public class UserDatabaseTest {
     @Test
     public void testFindUser() {
     }
+
+    @Test
+    public void testGetInstanceOfDatabase() {
+    }
+
+    @Test
+    public void testLogInAsUser() {
+    }
+
+    @Test
+    public void testGetLoggedInUser() {
+    }
+
+    @Test
+    public void testFindUserWithID() 
+    {
+        
+        UserDatabase tempUserDatabase = UserDatabase.getInstanceOfDatabase();
+        SystemUser tempUserSec = new SystemUser("Secretary", tempUserDatabase);
+        tempUserDatabase.addUser(tempUserSec);
+        assertEquals(tempUserSec.getID(), "S1");
+        assertEquals(tempUserSec.getID(), tempUserDatabase.findUserWithID("S1").getID());
+        //assertEquals(tempUserSec, tempUserDatabase.findUserWithID("S1"));
+    }
+
+    @Test
+    public void testFindDoctor() {
+    }
     
 }

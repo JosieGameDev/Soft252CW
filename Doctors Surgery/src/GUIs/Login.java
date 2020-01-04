@@ -5,7 +5,9 @@
  */
 package GUIs;
 
+import Objects.Address;
 import Objects.UserDatabase;
+import doctors.surgery.users.Patient;
 import doctors.surgery.users.SystemUser;
 
 /**
@@ -18,6 +20,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     
+    
    UserDatabase userDatabase;
     public Login() {
         initComponents();
@@ -25,7 +28,10 @@ public class Login extends javax.swing.JFrame {
         // set up database and add first person to database to login as
         userDatabase = UserDatabase.getInstanceOfDatabase();
         SystemUser testUser1 = new SystemUser("Administrator", userDatabase);
+        Address newAdd = new Address(32, "Dorchester Lane", "Plymouth", "PL4 8LY");
+        Patient testPatient = new Patient("Jane", "Doe", newAdd, 21, "Female");
         userDatabase.addUser(testUser1);
+        userDatabase.addUser(testPatient);
         
     }
 
@@ -46,10 +52,11 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lbl_title.setFont(new java.awt.Font("Source Code Pro Light", 1, 18)); // NOI18N
+        lbl_title.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         lbl_title.setText("LOG IN TO YOUR SURGERY PORTAL");
         lbl_title.setToolTipText("");
 
+        txt_ID.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
         txt_ID.setText("<ID>");
         txt_ID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,8 +64,10 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        txt_Pw.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
         txt_Pw.setText("<Password>");
 
+        btn_login.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
         btn_login.setText("Log in ");
         btn_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +75,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        lbl_outputStatus.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
         lbl_outputStatus.setText("-login status-");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -74,33 +84,32 @@ public class Login extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
+                .addComponent(txt_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(txt_Pw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbl_title)
-                        .addContainerGap(49, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(txt_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(txt_Pw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_outputStatus)
-                            .addComponent(btn_login))
-                        .addGap(49, 49, 49))))
+                    .addComponent(lbl_outputStatus)
+                    .addComponent(btn_login))
+                .addGap(49, 49, 49))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(lbl_title)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(53, 53, 53)
                 .addComponent(lbl_title)
-                .addGap(59, 59, 59)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_Pw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_login))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbl_outputStatus)
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         pack();
@@ -109,11 +118,20 @@ public class Login extends javax.swing.JFrame {
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         // TODO add your handling code here:
         // TRY AND LOGIN WITH GIVEN DETAILS
+        
+        
+        
         String ID = txt_ID.getText();
         String pw = txt_Pw.getText();
         if(userDatabase.login(ID, pw))
         {
             lbl_outputStatus.setText("LOGGED IN"); 
+            this.setVisible(false);
+            SystemUser thePat = (userDatabase.findUserWithID(ID));
+            userDatabase.logInAsUser(thePat);
+            
+            new PatientPortal().setVisible(true);
+            
             
         }
         else

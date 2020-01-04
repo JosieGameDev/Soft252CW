@@ -80,6 +80,9 @@ public class SystemUser {
         this.ID = ID;
         this.password = password;
     }
+
+    public SystemUser() {
+    }
     
     //constructor generate id 
     public SystemUser(String userType, UserDatabase userSystem)

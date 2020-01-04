@@ -9,6 +9,8 @@ import Interfaces.AccountManagement;
 import Interfaces.AppointmentManagement;
 import Interfaces.PatientInformation;
 import Objects.Address;
+import Objects.DoctorRating;
+import Objects.DoctorRatingsDatabase;
 import Objects.UserDatabase;
 
 /**
@@ -58,9 +60,11 @@ public class Patient extends SystemUser implements AppointmentManagement, Patien
     
     
     //methods
-    public void giveRating()
+    public void giveRating(DoctorRating doctorRate)
     {
         //method to allow patient to give doctor feedback
+        DoctorRatingsDatabase docData = DoctorRatingsDatabase.getInstanceOfDatabase();
+        docData.addNewRating(doctorRate);
     }
     
     public void viewPrescriptions()
@@ -69,8 +73,11 @@ public class Patient extends SystemUser implements AppointmentManagement, Patien
     }
 
     @Override
-    public void makeAppointment() {
+    public void makeAppointment() 
+    {
+        // send a request to sec for an appointment on given day 
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
@@ -84,12 +91,14 @@ public class Patient extends SystemUser implements AppointmentManagement, Patien
     }
 
     @Override
-    public void makeAccount() {
+    public void makeAccount(String UserType) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+   
+
     @Override
-    public void removeAccount() {
+    public void removeAccount(SystemUser accToRemove) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -8,6 +8,7 @@ package doctors.surgery.users;
 import Interfaces.AccountManagement;
 import Interfaces.DoctorRatings;
 import Objects.Address;
+import Objects.DoctorRatingsDatabase;
 import Objects.UserDatabase;
 
 /**
@@ -32,8 +33,10 @@ public class Administrator extends SystemUser implements DoctorRatings, AccountM
     
     //methods
     
-    public void reviewRatings()
+    public void reviewRatings(Doctor docToInform)
     {
+        DoctorRatingsDatabase docRatings = DoctorRatingsDatabase.getInstanceOfDatabase();
+        docRatings.getDocsRatings(docToInform);
         
     }
 
@@ -43,12 +46,15 @@ public class Administrator extends SystemUser implements DoctorRatings, AccountM
     }
 
     @Override
-    public void makeAccount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void makeAccount(String UserType) {
+        
     }
+    
+    
 
     @Override
-    public void removeAccount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void removeAccount(SystemUser accountToRemove) {
+        UserDatabase allUsers = UserDatabase.getInstanceOfDatabase();
+        allUsers.allUsers.remove(accountToRemove);
     }
 }

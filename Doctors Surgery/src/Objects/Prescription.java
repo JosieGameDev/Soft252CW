@@ -30,6 +30,17 @@ public class Prescription
         this.doctor = doctor;
         this.patient = patient;
     }
+    
+    public Prescription()
+    {
+        Medicine testMed = new Medicine("MedName", "TestsMedicineClass");
+        this.medicine = testMed;
+        this.instructions = "Use this to test System";
+        Doctor testDoc = new Doctor();
+        this.doctor = testDoc;
+        Patient testPat = new Patient();
+        this.patient = testPat;
+    }
 
     public Medicine getMedicine() {
         return medicine;

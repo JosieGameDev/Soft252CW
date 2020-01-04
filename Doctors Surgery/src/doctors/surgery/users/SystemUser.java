@@ -25,7 +25,7 @@ public class SystemUser {
 
     // personal details
     private String forename;
-    private String surname;
+    String surname;
     private Address address;
 
     public String getForename() {

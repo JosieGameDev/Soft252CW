@@ -6,6 +6,7 @@
 package Objects;
 
 import doctors.surgery.users.SystemUser;
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -76,6 +77,28 @@ public class UserDatabaseTest {
         tempUserDatabase.addUser(testAdmin);
         assertTrue(tempUserDatabase.getNumberOfRoles("Doctor").equals(3));
 
+    }
+    
+    @Test
+    public void testGetListOfRoles()
+    {
+        UserDatabase tempUserDatabase = UserDatabase.getInstanceOfDatabase();
+        SystemUser testRoleUser1 = new SystemUser("Patient", tempUserDatabase);
+        tempUserDatabase.addUser(testRoleUser1);
+        SystemUser testRoleUser2 = new SystemUser("Patient", tempUserDatabase);
+        tempUserDatabase.addUser(testRoleUser2);
+        SystemUser testRoleUser3 = new SystemUser("Patient", tempUserDatabase);
+        tempUserDatabase.addUser(testRoleUser3);
+        
+        ArrayList<SystemUser> expectedList = new ArrayList<>(0);
+        expectedList.add(testRoleUser1);
+        expectedList.add(testRoleUser2);
+        expectedList.add(testRoleUser3);
+        
+        tempUserDatabase.getListOfRoles("Patient");
+        
+        assertEquals(expectedList,tempUserDatabase.getListOfRoles("Patient") );
+        
     }
 
     @Test

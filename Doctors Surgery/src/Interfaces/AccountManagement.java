@@ -5,6 +5,8 @@
  */
 package Interfaces;
 
+import doctors.surgery.users.SystemUser;
+
 /**
  *
  * @author Josie
@@ -14,7 +16,7 @@ package Interfaces;
 
 public interface AccountManagement 
 {
-    public void makeAccount();
+    public void makeAccount(String userType);
     
-    public void removeAccount();
+    public void removeAccount(SystemUser accToRemove);
 }

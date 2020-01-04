@@ -57,6 +57,70 @@ public class UserDatabase
         return loggedIn;
     }
     
+    public ArrayList<SystemUser> getListOfRoles(String userType)
+    {
+        ArrayList<SystemUser> listOfUsers = new ArrayList<>(0);
+        
+        if(allUsers.isEmpty())
+        {
+            
+        }
+        //ADMIN
+        if("Administrator".equals(userType))
+        {
+            
+            for(Integer i = 0; i< allUsers.size(); i++)
+            {
+                
+                if(allUsers.get(i).getFirstLetterID().equals("A"))
+                {
+                    listOfUsers.add(allUsers.get(i));
+                } 
+            }
+        }
+        //DOC
+        if("Doctor".equals(userType))
+        {
+            
+            for(Integer i = 0; i< allUsers.size(); i++)
+            {
+                
+                if(allUsers.get(i).getFirstLetterID().equals("D"))
+                {
+                    listOfUsers.add(allUsers.get(i));
+                } 
+            }
+        }
+        //PAT
+        if("Patient".equals(userType))
+        {
+            
+            for(Integer i = 0; i< allUsers.size(); i++)
+            {
+                
+                if(allUsers.get(i).getFirstLetterID().equals("P"))
+                {
+                    listOfUsers.add(allUsers.get(i));
+                } 
+            }
+        }
+        //SEC
+        if("Secretary".equals(userType))
+        {
+            
+            for(Integer i = 0; i< allUsers.size(); i++)
+            {
+                
+                if(allUsers.get(i).getFirstLetterID().equals("S"))
+                {
+                    listOfUsers.add(allUsers.get(i));
+                } 
+            }
+        }
+        
+        return listOfUsers;
+    }
+    
     public Integer getNumberOfRoles(String userType)
     {
         Integer counter = 0;

@@ -31,6 +31,11 @@ public class Address
         this.Town = Town;
         this.Postcode = Postcode;
     }
+    
+    public Address()
+    {
+        
+    }
 
     
     

@@ -46,12 +46,13 @@ public class Secretary extends SystemUser  implements AppointmentManagement, Acc
     }
 
     @Override
-    public void makeAccount() {
+    public void makeAccount(String UserType) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void removeAccount() {
+    public void removeAccount(SystemUser accToRemove) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }

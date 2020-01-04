@@ -25,8 +25,14 @@ public class Doctor extends SystemUser implements AppointmentManagement, Patient
         super("Doctor", UserDatabase.getInstanceOfDatabase());
     }
 
-    public Doctor(String userType, String forename, String surname, Address address) {
+    public Doctor(String forename, String surname, Address address) {
         super("Doctor", forename, surname, address);
+    }
+    
+    public Doctor(String surname)
+    {
+        super("Doctor", UserDatabase.getInstanceOfDatabase());
+        this.surname = surname;
     }
     
     

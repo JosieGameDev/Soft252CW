@@ -28,6 +28,14 @@ public class Appointment
         this.dateAndTime = dateAndTime;
         this.reasonForAppointment = reasonForAppointment;
     }
+    
+    public Appointment()
+    {
+        this.patient = new Patient();
+        this.doctor = new Doctor();
+        this.dateAndTime = "01.01.2020";
+        this.reasonForAppointment = "TestAppointment";
+    }
 
     public Patient getPatient() {
         return patient;

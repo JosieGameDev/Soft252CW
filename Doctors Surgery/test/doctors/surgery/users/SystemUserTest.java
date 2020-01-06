@@ -97,4 +97,56 @@ public class SystemUserTest {
         assertTrue("Woower".equals(testUser8.getSurname())); 
         assertTrue("P1".equals(testUser8.getID()));
     }
+
+    @Test
+    public void testSendMessage() {
+    }
+
+    @Test
+    public void testGetPostbox() {
+    }
+
+    @Test
+    public void testGetForename() {
+    }
+
+    @Test
+    public void testSetForename() {
+    }
+
+    @Test
+    public void testGetSurname() {
+    }
+
+    @Test
+    public void testSetSurname() {
+    }
+
+    @Test
+    public void testGetAddress() {
+    }
+
+    @Test
+    public void testSetAddress() {
+    }
+
+    @Test
+    public void testGetID() {
+    }
+
+    @Test
+    public void testSetID() {
+    }
+
+    @Test
+    public void testGetPassword() {
+    }
+
+    @Test
+    public void testSetPassword() {
+    }
+
+    @Test
+    public void testWriteToFile() {
+    }
 }

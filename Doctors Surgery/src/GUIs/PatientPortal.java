@@ -5,11 +5,13 @@
  */
 package GUIs;
 
+import MessageSystem.M_apptRequest;
 import Objects.DoctorRating;
 import Objects.DoctorRatingsDatabase;
 import Objects.UserDatabase;
 import doctors.surgery.users.Doctor;
 import doctors.surgery.users.Patient;
+import doctors.surgery.users.Secretary;
 import doctors.surgery.users.SystemUser;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -31,15 +33,15 @@ public class PatientPortal extends javax.swing.JFrame {
     public PatientPortal() {
         initComponents();
         jList_ratings.removeAll();
-        
-        //populate with DOCS
-        Doctor testDoc1 = new Doctor("Bowditch");
-        Doctor testDoc2 = new Doctor("Smith");
-        Doctor testDoc3 = new Doctor("Jones");
-        
-        userData.addUser(testDoc1);
-        userData.addUser(testDoc2);
-        userData.addUser(testDoc3);
+//        
+//        //populate with DOCS
+//        Doctor testDoc1 = new Doctor("Bowditch");
+//        Doctor testDoc2 = new Doctor("Smith");
+//        Doctor testDoc3 = new Doctor("Jones");
+//        
+//        userData.addUser(testDoc1);
+//        userData.addUser(testDoc2);
+//        userData.addUser(testDoc3);
         
         DefaultListModel<String> docListModel = new DefaultListModel<>();
         
@@ -52,22 +54,23 @@ public class PatientPortal extends javax.swing.JFrame {
         
         jList_Docs.setModel(docListModel);
         jList_rateADoc.setModel(docListModel);
+        jList_selectDoctorReq.setModel(docListModel);
         
-        //populate with ratings for docs
-        //make some ratings
-        DoctorRating testRate = new DoctorRating("Bowditch", 3, "Lots of hats");
-        DoctorRating testRate2 = new DoctorRating("Smith", 2, "Bad magazines");
-        DoctorRating testRate3 = new DoctorRating("Jones", 4, "Good lad");
-        DoctorRating testRate4 = new DoctorRating("Bowditch", 5, "Friendly");
-        DoctorRating testRate5 = new DoctorRating("Smith", 4, "Funny");
-        DoctorRating testRate6 = new DoctorRating("Jones", 1, "Weird Hair");
-        ratingDatabase.addNewRating(testRate);
-        ratingDatabase.addNewRating(testRate2);
-         ratingDatabase.addNewRating(testRate3);
-         ratingDatabase.addNewRating(testRate4);
-        ratingDatabase.addNewRating(testRate5);
-         ratingDatabase.addNewRating(testRate6);
-        
+//        //populate with ratings for docs
+//        //make some ratings
+//        DoctorRating testRate = new DoctorRating("Bowditch", 3, "Lots of hats");
+//        DoctorRating testRate2 = new DoctorRating("Smith", 2, "Bad magazines");
+//        DoctorRating testRate3 = new DoctorRating("Jones", 4, "Good lad");
+//        DoctorRating testRate4 = new DoctorRating("Bowditch", 5, "Friendly");
+//        DoctorRating testRate5 = new DoctorRating("Smith", 4, "Funny");
+//        DoctorRating testRate6 = new DoctorRating("Jones", 1, "Weird Hair");
+//        ratingDatabase.addNewRating(testRate);
+//        ratingDatabase.addNewRating(testRate2);
+//         ratingDatabase.addNewRating(testRate3);
+//         ratingDatabase.addNewRating(testRate4);
+//        ratingDatabase.addNewRating(testRate5);
+//         ratingDatabase.addNewRating(testRate6);
+//        
         
         DefaultListModel<String> listModel = new DefaultListModel<>();
         
@@ -167,13 +170,24 @@ public class PatientPortal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_comments = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
+        jLayeredPane3 = new javax.swing.JLayeredPane();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        txt_reasonForAppt = new javax.swing.JTextArea();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        btn_reqAppt = new javax.swing.JToggleButton();
+        jLabel16 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jList_selectDoctorReq = new javax.swing.JList<>();
+        jLabel15 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         lbl_patName = new javax.swing.JLabel();
+        btn_logOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("s");
 
-        jTabbedPane1.setName(""); // NOI18N
+        jTabbedPane1.setName("Appointment Management"); // NOI18N
 
         jLabel12.setText("Age");
 
@@ -427,10 +441,102 @@ public class PatientPortal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Doctor Ratings", jLayeredPane1);
 
+        txt_reasonForAppt.setColumns(20);
+        txt_reasonForAppt.setRows(5);
+        jScrollPane6.setViewportView(txt_reasonForAppt);
+
+        jLabel17.setText("Give a brief reason for the appointment");
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        jLabel14.setText("REQUEST AN APPOINTMENT");
+
+        btn_reqAppt.setText("Send request to Secretary");
+        btn_reqAppt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_reqApptActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setText("Which doctor do you want to see?");
+
+        jList_selectDoctorReq.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane5.setViewportView(jList_selectDoctorReq);
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel15.setText("APPOINTMENT DETAILS");
+
+        jLayeredPane3.setLayer(jScrollPane6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(jLabel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(btn_reqAppt, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(jLabel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(jScrollPane5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(jLabel15, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane3Layout = new javax.swing.GroupLayout(jLayeredPane3);
+        jLayeredPane3.setLayout(jLayeredPane3Layout);
+        jLayeredPane3Layout.setHorizontalGroup(
+            jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane3Layout.createSequentialGroup()
+                .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jLayeredPane3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel16))
+                        .addGap(34, 34, 34)
+                        .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jLayeredPane3Layout.createSequentialGroup()
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_reqAppt))
+                            .addComponent(jLabel17)))
+                    .addGroup(jLayeredPane3Layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(jLabel15)))
+                .addContainerGap())
+        );
+        jLayeredPane3Layout.setVerticalGroup(
+            jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel14)
+                .addGap(18, 18, 18)
+                .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel17))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_reqAppt)
+                        .addGap(40, 40, 40)))
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Appointment Management", jLayeredPane3);
+
         jLabel9.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
         jLabel9.setText("PATIENT PORTAL ");
 
         lbl_patName.setText("patient name");
+
+        btn_logOut.setText("Log Out");
+        btn_logOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_logOutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -442,7 +548,9 @@ public class PatientPortal extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbl_patName)
-                .addGap(130, 130, 130))
+                .addGap(47, 47, 47)
+                .addComponent(btn_logOut)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -453,10 +561,12 @@ public class PatientPortal extends javax.swing.JFrame {
                         .addComponent(jLabel9))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(lbl_patName)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_patName)
+                            .addComponent(btn_logOut))))
                 .addGap(45, 45, 45)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(716, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(500, Short.MAX_VALUE))
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("DOCTOR RATINGS");
@@ -492,6 +602,32 @@ public class PatientPortal extends javax.swing.JFrame {
         //updateRatingsList(jList_Docs.getSelectedValue());
         
     }//GEN-LAST:event_btn_subRatActionPerformed
+
+    private void btn_reqApptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reqApptActionPerformed
+        // TODO add your handling code here:
+        // when pressed, create a message to send to all secs in user database request doctor appt
+        //create message
+        //SystemUser sender, SystemUser recipient, String message, Doctor chosenDoc, String reasonForAppt
+        Doctor chosenDoctor = ((Doctor)userData.findDoctor( jList_selectDoctorReq.getSelectedValue()));
+        //get the secretaries
+        ArrayList<SystemUser> allSecs = userData.getListOfRoles("Secretary");
+        
+        for (Integer i = 0 ; i <allSecs.size() ; i++)
+        {
+            M_apptRequest request = new M_apptRequest(loggedInUser, allSecs.get(i), "Requesting an appointment", 
+                                chosenDoctor, txt_reasonForAppt.getText());
+            
+            allSecs.get(i).sendMessage(request);
+        }
+        
+        
+    }//GEN-LAST:event_btn_reqApptActionPerformed
+
+    private void btn_logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logOutActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new Login().setVisible(true);
+    }//GEN-LAST:event_btn_logOutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -530,12 +666,18 @@ public class PatientPortal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_logOut;
+    private javax.swing.JToggleButton btn_reqAppt;
     private javax.swing.JButton btn_subRat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -546,13 +688,17 @@ public class PatientPortal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
+    private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JList<String> jList_Docs;
     private javax.swing.JList<String> jList_rateADoc;
     private javax.swing.JList<String> jList_ratings;
+    private javax.swing.JList<String> jList_selectDoctorReq;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lbl_PatientGender;
@@ -563,5 +709,6 @@ public class PatientPortal extends javax.swing.JFrame {
     private javax.swing.JTextArea txt_comments;
     private javax.swing.JTextField txt_commentsInput;
     private javax.swing.JTextField txt_giveRating;
+    private javax.swing.JTextArea txt_reasonForAppt;
     // End of variables declaration//GEN-END:variables
 }

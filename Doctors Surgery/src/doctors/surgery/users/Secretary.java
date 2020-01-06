@@ -7,8 +7,11 @@ package doctors.surgery.users;
 
 import Interfaces.AccountManagement;
 import Interfaces.AppointmentManagement;
+import MessageSystem.M_apptRequest;
+import MessageSystem.PostBox;
 import Objects.Address;
 import Objects.UserDatabase;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,17 +22,32 @@ import Objects.UserDatabase;
 public class Secretary extends SystemUser  implements AppointmentManagement, AccountManagement
 {
 
+    //special inbox for appt req
+    public ArrayList<M_apptRequest> appointmentRequests;
+    
     public Secretary() {
         super("Secretary", UserDatabase.getInstanceOfDatabase());
+        this.appointmentRequests = new ArrayList<>(0);
     }
 
-    public Secretary(String userType, String forename, String surname, Address address) {
+    public Secretary(String forename, String surname, Address address) {
         super("Secretary", forename, surname, address);
+        this.appointmentRequests = new ArrayList<>(0);
     }
     
     //vars
     
     //methods
+    public void sendApptRequest(M_apptRequest request)
+    {
+        appointmentRequests.add(request);
+    }
+
+    public ArrayList<M_apptRequest> getAppointmentRequests() {
+        return appointmentRequests;
+    }
+    
+    
     public void dispensePrescription()
     {
         // can dispense prescription to a patient if its in stock
@@ -54,5 +72,6 @@ public class Secretary extends SystemUser  implements AppointmentManagement, Acc
     public void removeAccount(SystemUser accToRemove) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 
 }

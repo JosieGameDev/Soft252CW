@@ -15,10 +15,22 @@ import doctors.surgery.users.SystemUser;
 public class M_apptRequest extends Message {
     //type of message sent by patient to request an appt
     private Doctor docRequested;
+    private String reasonForAppt;
     
-    public M_apptRequest(SystemUser sender, SystemUser recipient, String message, Doctor chosenDoc) {
-        super(sender, recipient, message);
+    public M_apptRequest(SystemUser sender, SystemUser recipient, String message, Doctor chosenDoc, String reasonForAppt) {
+        super(sender, recipient, message, "AppointmentRequest");
         this.docRequested = chosenDoc;
+        this.reasonForAppt = reasonForAppt;
     }
+
+    public Doctor getDocRequested() {
+        return docRequested;
+    }
+
+    public String getReasonForAppt() {
+        return reasonForAppt;
+    }
+    
+    
     
 }

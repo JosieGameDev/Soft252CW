@@ -23,7 +23,7 @@ public class Secretary extends SystemUser  implements AppointmentManagement, Acc
         super("Secretary", UserDatabase.getInstanceOfDatabase());
     }
 
-    public Secretary(String userType, String forename, String surname, Address address) {
+    public Secretary(String forename, String surname, Address address) {
         super("Secretary", forename, surname, address);
     }
     

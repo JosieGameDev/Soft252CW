@@ -227,11 +227,13 @@ public class UserDatabase
         
         for(Integer i = 0; i < allDocs.size(); i++)
         {
+            if(allDocs.get(i).getSurname() != null)
+            {
             if(allDocs.get(i).getSurname().equals(doctorName))
             {
                 foundDoc = allDocs.get(i);
             }
-            
+            }
         }
         }
         return foundDoc;

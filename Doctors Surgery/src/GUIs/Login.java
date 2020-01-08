@@ -132,6 +132,9 @@ public class Login extends javax.swing.JFrame {
             SystemUser thePat = (userDatabase.findUserWithID(ID));
             userDatabase.logInAsUser(thePat);
             
+            System.out.println(thePat.getForename());
+            System.out.println(userDatabase.loggedInUser.getForename());
+            
             openRelevantPortal();
             
             

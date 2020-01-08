@@ -25,7 +25,7 @@ public class Administrator extends SystemUser implements DoctorRatings, AccountM
         super("Administrator", UserDatabase.getInstanceOfDatabase());
     }
 
-    public Administrator(String userType, String forename, String surname, Address address) {
+    public Administrator(String forename, String surname, Address address) {
         super("Administrator", forename, surname, address);
     }
     

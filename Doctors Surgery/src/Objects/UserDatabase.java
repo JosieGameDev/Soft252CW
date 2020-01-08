@@ -222,8 +222,6 @@ public class UserDatabase
     {
         ArrayList<SystemUser> allDocs = getListOfRoles("Doctor");
         SystemUser foundDoc = new Doctor();
-        if(doctorName != null)
-        {
         
         for(Integer i = 0; i < allDocs.size(); i++)
         {
@@ -232,7 +230,6 @@ public class UserDatabase
                 foundDoc = allDocs.get(i);
             }
             
-        }
         }
         return foundDoc;
     }

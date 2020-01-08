@@ -77,21 +77,5 @@ public class PatientTest {
         assertTrue(patientAge.equals(testPatient.getAge()));
         assertTrue("Female".equals(testPatient.getGender()));
     }
-
-    @Test
-    public void testGetAge() {
-    }
-
-    @Test
-    public void testSetAge() {
-    }
-
-    @Test
-    public void testGetGender() {
-    }
-
-    @Test
-    public void testSetGender() {
-    }
     
 }

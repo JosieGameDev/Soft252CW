@@ -5,6 +5,7 @@
  */
 package Objects;
 
+import doctors.surgery.users.Doctor;
 import doctors.surgery.users.SystemUser;
 import java.util.ArrayList;
 import org.junit.After;
@@ -67,7 +68,7 @@ public class UserDatabaseTest {
         tempUserDatabase.addUser(tempUser);
  
         //should currently have no doctors
-        Integer num = 0;
+        Integer num = 1;
         assertEquals(tempUserDatabase.getNumberOfRoles("Doctor"), num);
         
         // add an admin
@@ -75,7 +76,7 @@ public class UserDatabaseTest {
         tempUserDatabase.addUser(testAdmin);
         tempUserDatabase.addUser(testAdmin);
         tempUserDatabase.addUser(testAdmin);
-        assertTrue(tempUserDatabase.getNumberOfRoles("Doctor").equals(3));
+        assertTrue(tempUserDatabase.getNumberOfRoles("Doctor").equals(4));
 
     }
     
@@ -131,6 +132,12 @@ public class UserDatabaseTest {
 
     @Test
     public void testFindDoctor() {
+         UserDatabase tempUserDatabase = UserDatabase.getInstanceOfDatabase();
+         Doctor testDoctor = new Doctor("Bow");
+         tempUserDatabase.addUser(testDoctor);
+         
+         tempUserDatabase.findDoctor("Bow");
+         assertEquals(testDoctor, tempUserDatabase.findDoctor("Bow"));
     }
     
 }

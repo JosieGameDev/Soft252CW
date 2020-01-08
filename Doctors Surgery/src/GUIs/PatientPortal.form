@@ -30,9 +30,7 @@
               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="lbl_patName" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-              <Component id="btn_logOut" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,15 +44,17 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbl_patName" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btn_logOut" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="lbl_patName" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+<<<<<<< HEAD
               <Component id="jTabbedPane1" min="-2" pref="803" max="-2" attributes="0"/>
               <EmptySpace pref="23" max="32767" attributes="0"/>
+=======
+              <Component id="jTabbedPane1" min="-2" pref="554" max="-2" attributes="0"/>
+              <EmptySpace pref="716" max="32767" attributes="0"/>
+>>>>>>> parent of 6d167db... saving and loading in
           </Group>
       </Group>
     </DimensionLayout>
@@ -62,7 +62,7 @@
   <SubComponents>
     <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
       <Properties>
-        <Property name="name" type="java.lang.String" value="Appointment Management" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="DOCTOR RATINGS"/>
@@ -650,14 +650,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="patient name"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btn_logOut">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Log Out"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_logOutActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

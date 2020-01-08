@@ -5,13 +5,11 @@
  */
 package GUIs;
 
-import MessageSystem.M_apptRequest;
 import Objects.DoctorRating;
 import Objects.DoctorRatingsDatabase;
 import Objects.UserDatabase;
 import doctors.surgery.users.Doctor;
 import doctors.surgery.users.Patient;
-import doctors.surgery.users.Secretary;
 import doctors.surgery.users.SystemUser;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -33,15 +31,15 @@ public class PatientPortal extends javax.swing.JFrame {
     public PatientPortal() {
         initComponents();
         jList_ratings.removeAll();
-//        
-//        //populate with DOCS
-//        Doctor testDoc1 = new Doctor("Bowditch");
-//        Doctor testDoc2 = new Doctor("Smith");
-//        Doctor testDoc3 = new Doctor("Jones");
-//        
-//        userData.addUser(testDoc1);
-//        userData.addUser(testDoc2);
-//        userData.addUser(testDoc3);
+        
+        //populate with DOCS
+        Doctor testDoc1 = new Doctor("Bowditch");
+        Doctor testDoc2 = new Doctor("Smith");
+        Doctor testDoc3 = new Doctor("Jones");
+        
+        userData.addUser(testDoc1);
+        userData.addUser(testDoc2);
+        userData.addUser(testDoc3);
         
         DefaultListModel<String> docListModel = new DefaultListModel<>();
         
@@ -54,23 +52,22 @@ public class PatientPortal extends javax.swing.JFrame {
         
         jList_Docs.setModel(docListModel);
         jList_rateADoc.setModel(docListModel);
-        jList_selectDoctorReq.setModel(docListModel);
         
-//        //populate with ratings for docs
-//        //make some ratings
-//        DoctorRating testRate = new DoctorRating("Bowditch", 3, "Lots of hats");
-//        DoctorRating testRate2 = new DoctorRating("Smith", 2, "Bad magazines");
-//        DoctorRating testRate3 = new DoctorRating("Jones", 4, "Good lad");
-//        DoctorRating testRate4 = new DoctorRating("Bowditch", 5, "Friendly");
-//        DoctorRating testRate5 = new DoctorRating("Smith", 4, "Funny");
-//        DoctorRating testRate6 = new DoctorRating("Jones", 1, "Weird Hair");
-//        ratingDatabase.addNewRating(testRate);
-//        ratingDatabase.addNewRating(testRate2);
-//         ratingDatabase.addNewRating(testRate3);
-//         ratingDatabase.addNewRating(testRate4);
-//        ratingDatabase.addNewRating(testRate5);
-//         ratingDatabase.addNewRating(testRate6);
-//        
+        //populate with ratings for docs
+        //make some ratings
+        DoctorRating testRate = new DoctorRating("Bowditch", 3, "Lots of hats");
+        DoctorRating testRate2 = new DoctorRating("Smith", 2, "Bad magazines");
+        DoctorRating testRate3 = new DoctorRating("Jones", 4, "Good lad");
+        DoctorRating testRate4 = new DoctorRating("Bowditch", 5, "Friendly");
+        DoctorRating testRate5 = new DoctorRating("Smith", 4, "Funny");
+        DoctorRating testRate6 = new DoctorRating("Jones", 1, "Weird Hair");
+        ratingDatabase.addNewRating(testRate);
+        ratingDatabase.addNewRating(testRate2);
+         ratingDatabase.addNewRating(testRate3);
+         ratingDatabase.addNewRating(testRate4);
+        ratingDatabase.addNewRating(testRate5);
+         ratingDatabase.addNewRating(testRate6);
+        
         
         DefaultListModel<String> listModel = new DefaultListModel<>();
         
@@ -182,12 +179,11 @@ public class PatientPortal extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         lbl_patName = new javax.swing.JLabel();
-        btn_logOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("s");
 
-        jTabbedPane1.setName("Appointment Management"); // NOI18N
+        jTabbedPane1.setName(""); // NOI18N
 
         jLabel12.setText("Age");
 
@@ -534,13 +530,6 @@ public class PatientPortal extends javax.swing.JFrame {
 
         lbl_patName.setText("patient name");
 
-        btn_logOut.setText("Log Out");
-        btn_logOut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_logOutActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -551,9 +540,7 @@ public class PatientPortal extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbl_patName)
-                .addGap(47, 47, 47)
-                .addComponent(btn_logOut)
-                .addContainerGap())
+                .addGap(130, 130, 130))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -564,12 +551,15 @@ public class PatientPortal extends javax.swing.JFrame {
                         .addComponent(jLabel9))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_patName)
-                            .addComponent(btn_logOut))))
+                        .addComponent(lbl_patName)))
                 .addGap(45, 45, 45)
+<<<<<<< HEAD
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 803, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
+=======
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(716, Short.MAX_VALUE))
+>>>>>>> parent of 6d167db... saving and loading in
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("DOCTOR RATINGS");
@@ -610,32 +600,6 @@ public class PatientPortal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_subRatActionPerformed
 
-    private void btn_reqApptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reqApptActionPerformed
-        // TODO add your handling code here:
-        // when pressed, create a message to send to all secs in user database request doctor appt
-        //create message
-        //SystemUser sender, SystemUser recipient, String message, Doctor chosenDoc, String reasonForAppt
-        Doctor chosenDoctor = ((Doctor)userData.findDoctor( jList_selectDoctorReq.getSelectedValue()));
-        //get the secretaries
-        ArrayList<SystemUser> allSecs = userData.getListOfRoles("Secretary");
-        
-        for (Integer i = 0 ; i <allSecs.size() ; i++)
-        {
-            M_apptRequest request = new M_apptRequest(loggedInUser, allSecs.get(i), "Requesting an appointment", 
-                                chosenDoctor, txt_reasonForAppt.getText());
-            
-            allSecs.get(i).sendMessage(request);
-        }
-        
-        
-    }//GEN-LAST:event_btn_reqApptActionPerformed
-
-    private void btn_logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logOutActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        new Login().setVisible(true);
-    }//GEN-LAST:event_btn_logOutActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -673,18 +637,12 @@ public class PatientPortal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_logOut;
-    private javax.swing.JToggleButton btn_reqAppt;
     private javax.swing.JButton btn_subRat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -695,17 +653,13 @@ public class PatientPortal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
-    private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JList<String> jList_Docs;
     private javax.swing.JList<String> jList_rateADoc;
     private javax.swing.JList<String> jList_ratings;
-    private javax.swing.JList<String> jList_selectDoctorReq;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lbl_PatientGender;
@@ -716,6 +670,5 @@ public class PatientPortal extends javax.swing.JFrame {
     private javax.swing.JTextArea txt_comments;
     private javax.swing.JTextField txt_commentsInput;
     private javax.swing.JTextField txt_giveRating;
-    private javax.swing.JTextArea txt_reasonForAppt;
     // End of variables declaration//GEN-END:variables
 }

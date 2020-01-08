@@ -5,17 +5,11 @@
  */
 package Objects;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-
 /**
  *
  * @author jwood20
  */
-public class Address implements java.io.Serializable
+public class Address 
 {
     //vars
     private Integer houseNumber;
@@ -84,67 +78,6 @@ public class Address implements java.io.Serializable
     public void setPostcode(String Postcode) {
         this.Postcode = Postcode;
     }
-    
-    public void writeToFile(String newFileName)
-    {
-        // Serialization  
-        try
-        {    
-            //Saving of object in a file 
-            FileOutputStream file = new FileOutputStream(newFileName); 
-            ObjectOutputStream out = new ObjectOutputStream(file); 
-              
-            // Method for serialization of object 
-            out.writeObject(this); 
-              
-            out.close(); 
-            file.close(); 
-              
-            System.out.println("Object has been serialized"); 
-  
-        } 
-          
-        catch(IOException ex) 
-        { 
-            System.out.println("IOException is caught"); 
-        } 
-  
-    }
-    
-    public Address readAddressFromFile(String filename, Address thisAddress)
-    {
-//        Address tempAddress = null;
-        thisAddress = null;
-        
-        try
-        {    
-            // Reading the object from a file 
-            FileInputStream file = new FileInputStream(filename); 
-            ObjectInputStream in = new ObjectInputStream(file); 
-              
-            // Method for deserialization of object 
-            thisAddress = (Address)in.readObject(); 
-            //thisAddress = tempAddress;
-              
-            in.close(); 
-            file.close(); 
-              
-            System.out.println("Object has been deserialized "); 
-            System.out.println("a = " + thisAddress.getHouseName()); 
-            System.out.println("b = " + thisAddress.getTown()); 
-        } 
-         catch(IOException ex) 
-        { 
-            System.out.println("IOException is caught"); 
-        } 
-        catch(ClassNotFoundException ex) 
-        { 
-            System.out.println("ClassNotFoundException is caught"); 
-        } 
-        
-        return thisAddress;
-    }
-    
     
     
 }

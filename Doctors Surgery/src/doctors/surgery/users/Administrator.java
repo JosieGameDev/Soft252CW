@@ -10,11 +10,6 @@ import Interfaces.DoctorRatings;
 import Objects.Address;
 import Objects.DoctorRatingsDatabase;
 import Objects.UserDatabase;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 /**
  *
@@ -30,7 +25,7 @@ public class Administrator extends SystemUser implements DoctorRatings, AccountM
         super("Administrator", UserDatabase.getInstanceOfDatabase());
     }
 
-    public Administrator(String forename, String surname, Address address) {
+    public Administrator(String userType, String forename, String surname, Address address) {
         super("Administrator", forename, surname, address);
     }
     
@@ -55,40 +50,6 @@ public class Administrator extends SystemUser implements DoctorRatings, AccountM
         
     }
     
-    
-    public Administrator readFromFile(String filename, Administrator thisAdmin)
-    {
-        
-        thisAdmin = null;
-        
-        try
-        {    
-            // Reading the object from a file 
-            FileInputStream file = new FileInputStream(filename); 
-            ObjectInputStream in = new ObjectInputStream(file); 
-              
-            // Method for deserialization of object 
-            thisAdmin = (Administrator)in.readObject(); 
-            //thisAddress = tempAddress;
-              
-            in.close(); 
-            file.close(); 
-              
-//            System.out.println("Object has been deserialized "); 
-//            System.out.println("a = " + thisAddress.getHouseName()); 
-//            System.out.println("b = " + thisAddress.getTown()); 
-        } 
-         catch(IOException ex) 
-        { 
-            System.out.println("IOException is caught"); 
-        } 
-        catch(ClassNotFoundException ex) 
-        { 
-            System.out.println("ClassNotFoundException is caught"); 
-        } 
-        
-        return thisAdmin;
-    }
     
 
     @Override

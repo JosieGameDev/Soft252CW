@@ -11,6 +11,7 @@ import Interfaces.PatientInformation;
 import Objects.Address;
 import Objects.DoctorRating;
 import Objects.DoctorRatingsDatabase;
+import Objects.PatientHistory;
 import Objects.UserDatabase;
 
 /**
@@ -25,22 +26,33 @@ public class Patient extends SystemUser implements AppointmentManagement, Patien
     //specific values
     private Integer Age;
     private String Gender;
+    private PatientHistory patientHistory;
 
     public Patient() {
         super("Patient", UserDatabase.getInstanceOfDatabase());
+        this.patientHistory = new PatientHistory();
+                
     }
     
     //vars
 
     public Patient(String forename, String surname, Address address) {
         super("Patient", forename, surname, address);
+        this.patientHistory = new PatientHistory();
     }
     
     public Patient(String forename, String surname, Address address, Integer age, String gender ) {
         super("Patient", forename, surname, address);
         this.Age = age;
         this.Gender = gender;
+        this.patientHistory = new PatientHistory();
     }
+
+    public PatientHistory getPatientHistory() {
+        return patientHistory;
+    }
+    
+    
 
     public Integer getAge() {
         return Age;

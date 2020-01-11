@@ -7,8 +7,11 @@ package doctors.surgery;
 
 import GUIs.Login;
 import Objects.Address;
+import Objects.Appointment;
 import Objects.DoctorRating;
 import Objects.DoctorRatingsDatabase;
+import Objects.Medicine;
+import Objects.Prescription;
 import Objects.UserDatabase;
 import doctors.surgery.users.Administrator;
 import doctors.surgery.users.Doctor;
@@ -35,6 +38,11 @@ public class DoctorsSurgery {
         Address newAdd2 = new Address("Plymouth University", "Drake Circus", "Plymouth", "PLSomething");
         Address newAdd3 = new Address(64, "Zoo Lane", "Townsville", "TWN ZOO");
         
+        //make medicines
+        Medicine newMed1 = new Medicine("Citalopram", "SSRI Antidepressent");
+        Medicine newMed2 = new Medicine("Cocodamol", "Strong Painkiller");
+        Medicine newMed3 = new Medicine("Insulin", "Diabetes Control");
+        
         Administrator newAdmin = new Administrator("Alfred", "Batdad", newAdd1);
         userData.addUser(newAdmin);
         
@@ -50,9 +58,31 @@ public class DoctorsSurgery {
         Secretary newSec = new Secretary("Robin", "Batson", newAdd1);
         userData.addUser(newSec);
         
-        Patient newPat = new Patient("Bat", "Man", newAdd1, 21, "Male");
+        //make prescriptions Medicine medicine, String instructions, Doctor doctor, Patient patient
+        //medicine - String name, String description
+        //apt Patient patient, Doctor doctor, String dateAndTime, String reasonForAppointment
+        
+        
+        Patient newPat = new Patient("Bat", "Man", newAdd1, 40, "Male");
+        Prescription pres1 = new Prescription(newMed1, "One a day with water", newDoc4, newPat);
+        newPat.getPatientHistory().addPrescription(pres1);
+        Prescription pres2 = new Prescription(newMed2, "Upto 4 a day to relieve pain", newDoc4, newPat);
+        newPat.getPatientHistory().addPrescription(pres2);
+        newPat.getPatientHistory().finishPrescriptiom(pres2);
+        Prescription pres3 = new Prescription(newMed3, "Takes as needed when blood sugar is critically low", newDoc4, newPat);
+        newPat.getPatientHistory().addPrescription(pres3);
+        newPat.getPatientHistory().finishPrescriptiom(pres3);
+        Appointment app1 = new Appointment(newPat, newDoc4, "3pm 1st Feb 2018", "Patient feeling overly dramatic");
+        newPat.getPatientHistory().addAppointment(app1);
+        newPat.getPatientHistory().moveApptToPast(app1);
+        Appointment app2 = new Appointment(newPat, newDoc1, "11AM 5th November 2018", "Patient believes they are the doctor");
+        newPat.getPatientHistory().addAppointment(app2);
+        newPat.getPatientHistory().moveApptToPast(app2);
         userData.addUser(newPat);
-        Patient newPat2 = new Patient("Dan", "Livingstone", newAdd2, 21, "Male");
+        
+        Patient newPat2 = new Patient("Denace", "The-Menace", newAdd2, 12, "Male");
+        Prescription pres4 = new Prescription(newMed2, "Take 3 times a day to relieve pain", newDoc1, newPat2);
+        newPat2.getPatientHistory().addPrescription(pres2);
         userData.addUser(newPat2);
         Patient newPat3 = new Patient("Josie", "Wood", newAdd3, 21, "Female");
         userData.addUser(newPat3);
@@ -80,6 +110,7 @@ public class DoctorsSurgery {
         docRatings.addNewRating(rate6);
         docRatings.addNewRating(rate7);
         docRatings.addNewRating(rate8);
+        
         
         //OPen login
         new Login().setVisible(true);
